@@ -73,3 +73,48 @@ def hailstone(n):
     else:
         print(n)
         return 1 + hailstone(3 * n  + 1)
+
+def sevens(n, k):
+    """Return the (clockwise) position of who says n among k players.
+    >>> sevens(2, 5)
+    2
+    >>> sevens(6, 5)
+    1
+    >>> sevens(7, 5)
+    2
+    >>> sevens(8, 5)
+    1
+    >>> sevens(9, 5)
+    5
+    >>> sevens(18, 5)
+    2
+    """
+    def helper(current_number, player, direction):
+        if current_number == n:
+            return player
+        if has_seven(current_number):
+            if player - direction == 0:
+                return helper(current_number + 1, k, -1 * direction)
+            elif player - direction == k + 1:
+                return helper(current_number + 1, 1, -1 * direction)
+            else:
+                return helper(current_number + 1, player - direction, -1 * direction)
+        if player + direction == 0:
+            return helper(current_number + 1, k, direction)
+        elif player + direction == k + 1:
+            return helper(current_number + 1, 1, direction)
+        else:
+            return helper(current_number + 1, player + direction, direction)
+    return helper(1, 1, 1)
+
+def has_seven(n):
+    #n is bigger than 0
+    if n % 7 == 0:
+        return True
+    if n < 10 and n != 7:
+        return False
+    while n > 0:
+        if n % 10 == 7:
+            return True
+        n = n // 10
+    return False
