@@ -1,4 +1,13 @@
-from disc05 import *
-t2 = tree(5, [tree(6), tree(7)])
-t1 = tree(3, [tree(4), t2])
-print(has_path(t2, [5, 6]))
+def square(x):
+    return x * x
+def compose(f, g):
+    def inner(x):
+        return f(g(x))
+    return inner
+def repeat(f, n):
+    def inner(x):
+        if n == 0:
+            return x
+        else:
+            return repeat(f, n - 1)(f(x))
+    return inner
