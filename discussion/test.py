@@ -1,13 +1,13 @@
-def square(x):
-    return x * x
-def compose(f, g):
-    def inner(x):
-        return f(g(x))
-    return inner
-def repeat(f, n):
-    def inner(x):
-        if n == 0:
-            return x
+def fit(total, n):
+    def inner(total, n, x):
+        if n == 0 and total == 0:
+            return True
+        elif total == 0 and n != 0:
+            return False
+        elif total != 0 and n == 0:
+            return False
+        elif x * x > total:
+            return False
         else:
-            return repeat(f, n - 1)(f(x))
-    return inner
+            return inner(total - x * x, n - 1, x + 1) or inner(total, n, x + 1)
+    return inner(total, n, 1)
