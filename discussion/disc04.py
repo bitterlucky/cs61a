@@ -39,7 +39,6 @@ def max_product(s):
         for i in range(len(s)):
             lst.append(s[i] * max_product(s[i + 2:]))
         return max(lst)
-
 def sums(n, m):
     """Return lists that sum to n containing positive numbers up to m that
     have no adjacent repeats.
@@ -52,18 +51,14 @@ def sums(n, m):
     >>> sums(5, 5)
     [[1, 3, 1], [1, 4], [2, 1, 2], [2, 3], [3, 2], [4, 1], [5]]
     >>> sums(6, 3)
-    [[1, 2, 1, 2], [1, 2, 3], [1, 3, 2], [2, 1, 2, 1], [2, 1, 3], [2, 3, 1], [3, 1, 2],
-    [3, 2, 1]]
+    [[1, 2, 1, 2], [1, 2, 3], [1, 3, 2], [2, 1, 2, 1], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     """
+    lst = []
     if n < 0:
         return []
     if n == 0:
         sums_to_zero = []
         return [sums_to_zero]
-    result = []
     for k in range(1, m + 1):
-        result = result + [[k] + rest for rest in sums(n - k, m) if rest == [] or rest[0] != k]
-    return result
-
-
-
+        lst += [[k] + rest for rest in sums(n-k, m) if rest == [] or rest[0] != k]
+    return lst
