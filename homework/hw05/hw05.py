@@ -29,19 +29,19 @@ def merge(a, b):
     >>> [next(result) for _ in range(10)]
     [2, 3, 5, 7, 8, 9, 11, 13, 14, 15]
     """
-    temp_a = next(a)
-    temp_b = next(b)
+    next_a = next(a)
+    next_b = next(b)
     while True:
-      if temp_a == temp_b:
-        yield temp_a
-        temp_a = next(a)
-        temp_b = next(b)
-      elif temp_a < temp_b:
-        yield temp_a
-        temp_a = next(a)
+      if next_a < next_b:
+        yield next_a
+        next_a = next(a)
+      elif next_a > next_b:
+        yield next_b
+        next_b = next(b)
       else:
-        yield temp_b
-        temp_b = next(b)
+        yield next_a
+        next_a = next(a)
+        next_b = next(b)
             
 
 

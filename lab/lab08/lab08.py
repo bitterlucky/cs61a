@@ -40,7 +40,7 @@ def prune_small(t, n):
     Tree(6, [Tree(1), Tree(3, [Tree(1), Tree(2)])])
     """
     while len(t.branches) > n:
-        largest = max(t.branches, key= lambda x: x.label)
+        largest = max([b for b in t.branches], key=lambda t: t.label)
         t.branches.remove(largest)
     for b in t.branches:
         prune_small(b, n)
