@@ -25,5 +25,6 @@
 
 (define (no-repeats s)
   (if (null? s) s
-    (cons (car s)
-      (no-repeats (filter (lambda (x) (not (= (car s) x))) (cdr s))))))
+    (cons (car s) (no-repeats (filter (lambda (x) (not (= x (car s)))) (cdr s))))
+  )
+)

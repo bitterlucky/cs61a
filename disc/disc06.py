@@ -34,12 +34,13 @@ def partition_gen(n, m):
     """
     assert n > 0 and m > 0
     if n == m:
-        yield str(n)
+        yield str(m)
     if n - m > 0:
-        for p in partition_gen(n - m, m):
-            yield p + ' + ' + str(m)
+        for x in partition_gen(n - m, m):
+            yield  x + " + " + str(m)
     if m > 1:
         yield from partition_gen(n, m - 1)
+    
 
 
 
